@@ -1,14 +1,14 @@
 
-if game:GetService("CoreGui"):FindFirstChild("ow menu | Premium Panel v0.0.1") then
+if game:GetService("CoreGui"):FindFirstChild("VXC | Panel") then
     require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Message"]).New("Another menu is found. \n Please execute again.")
         for i = 0,5 do
-            game:GetService("CoreGui")["ow menu | Premium Panel v0.0.1"]:Destroy()
+            game:GetService("CoreGui")["VXC | Panel"]:Destroy()
         end
-elseif not game:GetService("CoreGui"):FindFirstChild("ow menu | Premium Panel v0.0.1") then
+elseif not game:GetService("CoreGui"):FindFirstChild("VXC | Panel") then
     print("Starting.. All seems fine.")
 end
 --------------------------
-require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Message"]).New("Press OK to start ow menu.")
+require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Message"]).New("Press OK to open menu.")
 
 if game.PlaceId == 6284583030 then
     local start = tick()
@@ -22,17 +22,17 @@ end
 
 
 -- init
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/inceldom/skid/main/guish.lua"))()
-local venyx = library.new("ow menu | Premium Panel v0.0.1", 5013109572)
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Death128/Ui-Library-Backup/main/VenUILIB"))()
+local venyx = library.new("VXC | Panel", 5013109572)
 
 -- themes
 local themes = {
-Background = Color3.fromRGB(23, 0, 1),
+Background = Color3.fromRGB(24, 109, 182),
 Glow = Color3.fromRGB(255, 95, 95),
-Accent = Color3.fromRGB(23, 0, 1),
-LightContrast = Color3.fromRGB(44, 13, 19),
-DarkContrast = Color3.fromRGB(23, 0, 1),  
-TextColor = Color3.fromRGB(255, 105, 138)
+Accent = Color3.fromRGB(47, 47, 47),
+LightContrast = Color3.fromRGB(70, 70, 70),
+DarkContrast = Color3.fromRGB(47, 47, 47),  
+TextColor = Color3.fromRGB(255, 255, 255)
 }
 
 
@@ -131,29 +131,59 @@ local function SecondsToClock(seconds)
 
 -------------------------------------------------------------------------------------------------
 -- credits page
-local page = venyx:addPage("Developers", 5832745520)
+local page = venyx:addPage("Home", 5832745520)
 local Credits1 = page:addSection("Main Developer:")
 
-Credits1:addButton("ow#3295", function(dsclink)
+Credits1:addButton("Death128#4886", function(dsclink)
     if dsclink then
         venyx:Notify("Discord ID Copied", "You can paste it.")
     end
-    setclipboard('ow#3295')
+    setclipboard('Death128#4886')
 end)
 
 ----------------------------------
 
 local Credits2 = page:addSection("Discord:")
 
-Credits2:addButton("Copy Discord Link", function(dsclink)
+Credits2:addButton("Discord Link Coming Soon", function(dsclink)
     if dsclink then
         venyx:Notify("Discord Link Copied", "You can paste it.")
     end
-    setclipboard('https://discord.gg/p4jjhBq6vS')
+    setclipboard('')
 end)
 
 
 
+-------------------------------------------------------------------------------------------------
+local Credits3 = page:addSection("Anti-Afk:")
+
+Credits3:addButton("Anti afk", function()
+    print("Anti Afk Loaded")
+    local GC = getconnections or get_signal_cons
+    if GC then
+        for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
+            if v["Disable"] then
+                v["Disable"](v)
+            elseif v["Disconnect"] then
+                v["Disconnect"](v)
+            end
+        end
+    else
+        print("Unlucky.")
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+    
+    local VirtualUser=game:service'VirtualUser'
+    game:service'Players'.LocalPlayer.Idled:connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new())
+    end)
+    end)
 -------------------------------------------------------------------------------------------------
 -- page1
 
@@ -161,17 +191,6 @@ end)
 local page = venyx:addPage("Auto farm", 1379498635)
 local section1 = page:addSection("Auto farm.")
 local section2 = page:addSection("Automated stuff.")
--------------------------------------------------------------------------------------------------
--- Misc page
-local page = venyx:addPage("Miscellaneous", 37219625)
-local misc1 = page:addSection("Miscellaneous.")
---local misc2 = page:addSection("Open menus.")
-
--------------------------------------------------------------------------------------------------
-
--- Egg page
-local page = venyx:addPage("Eggs", 5094819983)
-local eggs1 = page:addSection("Automated egg opener")
 -------------------------------------------------------------------------------------------------
 
 -- Pets page
@@ -183,11 +202,25 @@ local pets4 = page:addSection("Automated dark matter.")
 
 -------------------------------------------------------------------------------------------------
 
+-- Egg page
+local page = venyx:addPage("Eggs", 5094819983)
+local eggs1 = page:addSection("Auto Hatch")
+
+-------------------------------------------------------------------------------------------------
+
 -- Troll page
 --local page = venyx:addPage("Troll", 329532393)
 --local troll1 = page:addSection("Troll")
 
 -------------------------------------------------------------------------------------------------
+
+-- Misc page
+local page = venyx:addPage("Miscellaneous", 37219625)
+local misc1 = page:addSection("Miscellaneous.")
+local misc2 = page:addSection("Open menus.")
+
+-------------------------------------------------------------------------------------------------
+
 -- Settings page
 local page = venyx:addPage("Settings", 5107159171)
 local Settings1 = page:addSection("Settings.")
@@ -201,11 +234,10 @@ end)
 
 
 
-
 ------------
 
 Settings1:addButton("Destroy Menu", function(destroygui)
-    game:GetService("CoreGui")["ow menu | Premium Panel v0.0.1"]:Destroy()
+    game:GetService("CoreGui")["VXC | Panel"]:Destroy()
     print("Old menu destroyed.")
 end)
 -------------------------------------------------------------------------------------------------
@@ -740,20 +772,20 @@ end)
 
 
 --misc1:addButton("Better Search", function(bettersearchmessage)
- --   require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Message"]).New("Better Search Loaded \nNow you can use type: \n- Pet Name \n- Pet Nickname \n- Pet Rarity (Exclusive, Mythical, Legendary, Epic, Rare, Basic) \n- Pet Type (Dark Natter, Rainbow, Gold and Normal \n- Enchants like Royalty etc")
- ---   print("Pet Counter Loaded")
- --   loadstring(game:HttpGet('https://pastebinp.com/raw/JUEtgq95'))()
+--    require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Message"]).New("Better Search Loaded \nNow you can use type: \n- Pet Name \n- Pet Nickname \n- Pet Rarity (Exclusive, Mythical, Legendary, Epic, Rare, Basic) \n- Pet Type (Dark Natter, Rainbow, Gold and Normal \n- Enchants like Royalty etc")
+--    print("Pet Counter Loaded")
+--    loadstring(game:HttpGet('https://raw.githubusercontent.com/Death128/Ui-Library-Backup/main/BetterSearch'))()
 --end)
 
 ------------------
 
---misc1:addButton("Pet Counter", function(petcountermessage)
-   -- print("Pet Counter Loaded")
-   -- loadstring(game:HttpGet("https://raw.githubusercontent.com/owedits/fartsfx/main/pcounfart.lua", true))()
-  --  if petcountermessage then
-  --      venyx:Notify("Pet Counter Started", "Click F9 to check counted pets")
-  --  end
---end)
+misc1:addButton("Pet Counter", function(petcountermessage)
+    print("Pet Counter Loaded")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Death128/Ui-Library-Backup/main/petcounter", true))()
+    if petcountermessage then
+        venyx:Notify("Pet Counter Started", "Click F9 to check counted pets")
+    end
+end)
 
 -------------------------------------------------------------------------------------------------
 --page2
@@ -803,7 +835,7 @@ _G.TripleEgg = false
 
 ----------------------------
 
-eggs1:addToggle("Enable automated egg opener.", false, function(dropegg)
+eggs1:addToggle("Enable auto.", false, function(dropegg)
 shared.toggle3drop = dropegg
 end)
 local openeegg = eggor
@@ -1093,7 +1125,7 @@ end)
 --end
 --end
 --
-----loadstring(game:HttpGet('https://raw.githubusercontent.com/owedits/fartsfx/main/enchfart.lua'))()
+----loadstring(game:HttpGet('https://raw.githubusercontent.com/Death128/Ui-Library-Backup/main/enchcc'))()
 --end)
 -------------------------
 
@@ -1110,7 +1142,7 @@ end)
 -------------------------------------------------------------------------------------------------
 --Dark Matter
 
-pets4:addButton("Remaining Time Check", function()
+misc1:addButton("Remaining Time Check", function()
         local PetList = {}
         for i,v in pairs(GameLibrary.Directory.Pets) do
         PetList[i] = v.name
@@ -1274,33 +1306,7 @@ end)
 
 -------------------------------------------------------------------------------------------------
 
-misc1:addButton("Anti afk", function()
-print("Anti Afk Loaded")
-local GC = getconnections or get_signal_cons
-if GC then
-    for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
-        if v["Disable"] then
-            v["Disable"](v)
-        elseif v["Disconnect"] then
-            v["Disconnect"](v)
-        end
-    end
-else
-    print("Unlucky.")
-    local vu = game:GetService("VirtualUser")
-    game:GetService("Players").LocalPlayer.Idled:connect(function()
-        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-        wait(1)
-        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-    end)
-end
 
-local VirtualUser=game:service'VirtualUser'
-game:service'Players'.LocalPlayer.Idled:connect(function()
-VirtualUser:CaptureController()
-VirtualUser:ClickButton2(Vector2.new())
-end)
-end)
 -------------------------------------------------------------------------------------------------
 
 local function ByeLAG()
@@ -1335,37 +1341,37 @@ end)
 
 -------------------------------------------------------------------------------------------------
 --Remote Things
---misc2:addButton("Pet Collection", function()
-  --  game:GetService("Players").LocalPlayer.PlayerGui.Collection.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Collection.Enabled
---end)
+    misc2:addButton("Pet Collection", function()
+    game:GetService("Players").LocalPlayer.PlayerGui.Collection.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Collection.Enabled
+end)
 
---	misc2:addButton("Fuse Pets", function()
---		game:GetService("Players").LocalPlayer.PlayerGui.FusePets.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.FusePets.Enabled
---	end)
+misc2:addButton("Merchant", function()
+    game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled
+end)
 
---	misc2:addButton("Gold Machine", function()
---		game:GetService("Players").LocalPlayer.PlayerGui.Golden.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Golden.Enabled
---	end)
+	misc2:addButton("Fuse Pets", function()
+		game:GetService("Players").LocalPlayer.PlayerGui.FusePets.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.FusePets.Enabled
+	end)
 
---	misc2:addButton("Rainbow Machine", function()
+	misc2:addButton("Gold Machine", function()
+		game:GetService("Players").LocalPlayer.PlayerGui.Golden.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Golden.Enabled
+	end)
+
+	misc2:addButton("Rainbow Machine", function()
 	--	game:GetService("Players").LocalPlayer.PlayerGui.Rainbow.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Rainbow.Enabled
---	end)
+	end)
 
---	misc2:addButton("Dark Matter Machine", function()
---		game:GetService("Players").LocalPlayer.PlayerGui.DarkMatter.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.DarkMatter.Enabled
---	end)
+	misc2:addButton("Dark Matter Machine", function()
+		game:GetService("Players").LocalPlayer.PlayerGui.DarkMatter.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.DarkMatter.Enabled
+	end)
 
---	misc2:addButton("Merchant", function()
---		game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled
---	end)
+	misc2:addButton("Enchant", function()
+		game:GetService("Players").LocalPlayer.PlayerGui.EnchantPets.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.EnchantPets.Enabled
+	end)
 
---	misc2:addButton("Enchant", function()
---		game:GetService("Players").LocalPlayer.PlayerGui.EnchantPets.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.EnchantPets.Enabled
---	end)
-
---	misc2:addButton("Spooky Upgrades", function()
-	--	game:GetService("Players").LocalPlayer.PlayerGui.SpookyUpgrades.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.SpookyUpgrades.Enabled
-	--end)
+	misc2:addButton("Spooky Upgrades", function()
+		game:GetService("Players").LocalPlayer.PlayerGui.SpookyUpgrades.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.SpookyUpgrades.Enabled
+	end)
 
 -------------------------------------------------------------------------------------------------
 --Troll Page
