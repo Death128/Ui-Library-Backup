@@ -32,7 +32,7 @@ else
         TempTable[TempString] = {}
         table.insert(TempTable[TempString], v.uid)
     end
-elseif v.r then
+else v.r then
     local TempString = '*Dark Matter*: '..PetList[v.id]
     if TempTable[TempString] then
         table.insert(TempTable[TempString], v.uid)
