@@ -32,13 +32,6 @@ else
         TempTable[TempString] = {}
         table.insert(TempTable[TempString], v.uid)
     end
-    local TempString = '*Dark Matter*: '..PetList[v.id]
-    if TempTable[TempString] then
-        table.insert(TempTable[TempString], v.uid)
-    else
-        TempTable[TempString] = {}
-        table.insert(TempTable[TempString], v.uid)
-    end
 end
 end
 for i,v in pairs(TempTable) do
